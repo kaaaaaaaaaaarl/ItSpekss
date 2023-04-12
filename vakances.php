@@ -49,30 +49,28 @@
 
       
         <?php
+        
           $servername = "localhost:3307"; // replace with your server name
           $username = "root"; // replace with your MySQL username
           $password = ""; // replace with your MySQL password
           $dbname = "pps"; // replace with your database name
           $conn = mysqli_connect($servername, $username, $password, $dbname);
-        
-          // Check connection
          if (!$conn) {
               die("Connection failed: " . mysqli_connect_error());
           }
 
-
           $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
           $limit = 10;
-      
-          // query your database for the news articles
+
          $sql = "SELECT * FROM ziņas ORDER BY id DESC LIMIT $offset, $limit";
           $result = mysqli_query($conn, $sql);
-      
-        // start output buffering
+
           ob_start();
       
-        // loop through the results and generate the HTML for each article
          while($row = mysqli_fetch_assoc($result)) {
+          if (isset($_SESSION['user'])) { // Updated condition to check for $_SESSION['my_value'] instead of $_SESSION['username']
+            echo '<a href="pievienot.php"><button name="Edit">Edit</button></a>';
+        }
            echo '<div class="item">';
            echo '<img src="https://via.placeholder.com/600x400" alt="Image 3">';
            echo  '<div class="text">';
@@ -81,7 +79,7 @@
            echo "<h2><a style='font-size: 20px;' href='PieteiktiesVak.php' class='pieteikties'>Pieteikties</a></h2>";
            echo '</div>
           </div>';
-          // flush the output buffer if it exceeds 1MB
+          
            if(ob_get_length() > 1024 * 1024) {
              ob_flush();
               ob_start();
@@ -91,8 +89,6 @@
           // send the remaining output to the browser
          ob_end_flush();
       
-        
-          // Close the connection
           mysqli_close($conn);
           ?>
       

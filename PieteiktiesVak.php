@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
+  $_SESSION['user'] = 'john';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -66,7 +74,7 @@
         </div>
         <div class="contact-us">
             <h3>Kontakti</h3>
-            <p>Ē-pasts: ITspeks@gmail.com</p>
+            <p>E-pasts: ITspeks@gmail.com</p>
             <p>Telefon Nummurs: 555-555-5555</p>
         </div>
       </footer>
