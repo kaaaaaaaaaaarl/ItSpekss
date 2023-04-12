@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
     <div class="pnews">
       <h1>Jaunumi</h1>
         <?php
-        $servername = "localhost:3307"; // replace with your server name
-        $username = "root"; // replace with your MySQL username
-        $password = ""; // replace with your MySQL password
-        $dbname = "pps"; // replace with your database name
+        $servername = "localhost:3307"; 
+        $username = "root";
+        $password = ""; 
+        $dbname = "pps"; 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         
         // Check connection

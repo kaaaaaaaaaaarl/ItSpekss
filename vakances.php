@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
+  $_SESSION['user'] = 'john';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -33,6 +41,9 @@
           <input type="password" id="password" name="password"><br><br>
           <input type="submit" value="Submit">
         </form>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="submit" name="setUsername" value="Set Username to 'john'">
+  </form>
       </div>
     </section>
   </header>
@@ -50,10 +61,10 @@
       
         <?php
         
-          $servername = "localhost:3307"; // replace with your server name
-          $username = "root"; // replace with your MySQL username
-          $password = ""; // replace with your MySQL password
-          $dbname = "pps"; // replace with your database name
+          $servername = "localhost:3307"; 
+          $username = "root"; 
+          $password = ""; 
+          $dbname = "pps"; 
           $conn = mysqli_connect($servername, $username, $password, $dbname);
          if (!$conn) {
               die("Connection failed: " . mysqli_connect_error());
@@ -68,9 +79,10 @@
           ob_start();
       
          while($row = mysqli_fetch_assoc($result)) {
-          if (isset($_SESSION['user'])) { // Updated condition to check for $_SESSION['my_value'] instead of $_SESSION['username']
-            echo '<a href="pievienot.php"><button name="Edit">Edit</button></a>';
-        }
+          if (isset($_SESSION['user'])) {
+            $id = $row['ID'];
+            echo  '<a href="pievienot.php?id='. $id .'&VVZ=V&Edit=E"> <button name="Edit">Edit</button></a>';
+            }
            echo '<div class="item">';
            echo '<img src="https://via.placeholder.com/600x400" alt="Image 3">';
            echo  '<div class="text">';

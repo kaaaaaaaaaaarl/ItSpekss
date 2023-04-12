@@ -35,30 +35,62 @@
     </header>
 
 <div class="container">
-    <php 
-    if(
+    <?php
         
-    )
+        $servername = "localhost:3307";
+        $username = "root";
+        $password = ""; 
+        $dbname = "pps"; 
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+       if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+        $limit = 10;
+
+       $sql = "SELECT * FROM ziņas ORDER BY id DESC LIMIT $offset, $limit";
+        $result = mysqli_query($conn, $sql);
+
+        ob_start();
+        while($row = mysqli_fetch_assoc($result)) {
+          $title=$row['Tituls'];
+          $mainText = $row['GalvenaisTeksts'];
+          $sources= $row['Avoti'];
+
+        }
     ?>
-<form action="submit.php" method="POST" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" name="title" required>
+<form method="POST" enctype="multipart/form-data">
+<div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" value="<?php echo $title; ?>" required>
     </div>
     <div class="form-group">
-      <label for="main-text">Main Text:</label>
-      <textarea class="form-control" id="main-text" name="main-text" rows="10" required></textarea>
+        <label for="main-text">Main Text:</label>
+        <textarea class="form-control" id="main-text" name="main-text" rows="10" required><?php echo $mainText; ?></textarea>
     </div>
     <div class="form-group">
-      <label for="sources">Sources:</label>
-      <input type="text" class="form-control" id="sources" name="sources" required>
+        <label for="sources">Sources:</label>
+        <input type="text" class="form-control" id="sources" name="sources" value="<?php echo $sources; ?>" required>
     </div>
     <div class="form-group">
-      <label for="photo">Photo:</label>
-      <input type="file" class="form-control-file" id="photo" name="photo">
+        <label for="photo">Photo:</label>
+        <input type="file" class="form-control-file" id="photo" name="photo">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <input type="submit" name="EditOrPost" class="btn btn-primary"></input>
+</form>
+
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['EditOrPost'])) {
+  $edit= $_GET['Edit'];
+  if($edit=='E'){
+    echo '<h1>WORKS</h1>';
+  }
+}
+?>
+
 </div>
 
 
