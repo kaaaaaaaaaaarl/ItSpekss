@@ -1,0 +1,394 @@
+*{
+    text-decoration: none;
+}
+header{
+    background: #555555;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    justify-content: space-between;
+    
+    
+
+}
+body{
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+.pageS p{
+color: white;
+}
+    
+.pageS1:hover{
+    background-color: rgba(52, 192, 52, 0.525);
+    border-radius: 0.5rem;
+}
+.sect2 .pageS1:hover{
+  background-color: rgba(52, 192, 52, 0.525);
+  border-radius: 0.5rem;
+}
+.popup h2{
+  text-align: center;
+}
+
+header p{
+    color: 555555;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+}
+
+header .sect1{
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+header .sect2{
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+.container1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100%;
+    margin: 50px;
+}
+
+.sakums h1{
+    text-align: center;
+    color: rgb(41, 45, 47);
+    margin-top: 1.5rem;
+}
+.news{
+    width: 40%;
+    border: 2.5px solid green;
+    background-color: #bfea91;
+    color: rgb(41, 45, 47);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 7%;
+}
+.news h2{
+    text-align: center;
+}
+.jaunumuSakums{
+    text-align: center;
+    color: rgb(41, 45, 47);
+}
+.lasitVairak{
+    text-align: center;
+    background-color: #bfea91;
+    border: solid green;
+    color: rgb(41, 45, 47);
+    border-radius: 10px;
+    padding: 10px 100px;
+}
+hr{
+    color: green;
+}
+.Nodarbosanas{
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    border: solid .1rem green;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #bfea91;
+}
+.Nodarbosanas h3{
+    color: rgb(41, 45, 47);
+    display: flex;
+    justify-content: center;
+}
+.Nodarbosanas2{
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    border: solid .1rem green;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #bfea91;
+    
+}
+.Nodarbosanas2 h3{
+    color: rgb(41, 45, 47);
+    display: flex;
+    justify-content: center;
+}
+.mainPage{
+    margin: 0px 70px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    
+    padding: 20px;
+    box-sizing: border-box;
+    
+  }
+  
+  .box:nth-child(even) {
+    flex-direction: row;
+  }
+  
+  .text-box {
+    flex: 1;
+    padding-right: 20px;
+    box-sizing: border-box;
+    
+  }
+  
+  .nodarbImg {
+    flex: 1;
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  }
+
+  .pnews .item {
+    border: 2.5px solid green;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .pnews .text {
+    margin-left: 20px;
+  }
+  
+  .pnews img {
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    
+  }
+  .pnews h1{
+    text-align: center;
+}
+
+
+.vakancez .item {
+    border: 2.5px solid green;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .vakancez .text {
+    margin-left: 20px;
+  }
+  
+  .vakancez img {
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .vakancez h1{
+    text-align: center;
+}
+
+.pieteikties{
+  text-align: center;
+  background-color: #bfea91;
+  border: solid green;
+  color: rgb(41, 45, 47);
+  border-radius: 10px;
+  padding: 6px 30px;
+  float: right;
+}
+
+
+
+
+
+
+
+
+form {
+  width: 500px;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: solid #8BC34A;
+}
+form2{
+  
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+input[type="email"], input[type="file"], textarea {
+  display: inline-block;
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+#vards{
+  display: inline-block;
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #8BC34A;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+form label[for="message"] {
+  vertical-align: top;
+}
+input[type="submit"]:hover {
+  background-color: #7cae43;
+}
+
+textarea {
+  height: 200px;
+}
+
+
+
+footer {
+  background-color: #555555;
+  color: #fff;
+  padding: 20px;
+}
+
+.social-media-icons {
+  text-align: center;
+}
+
+.social-media-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 10px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #8BC34A;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.social-media-icons a:hover {
+  background-color: #4CAF50;
+}
+
+.contact-us {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.contact-us h3 {
+  margin-top: 0;
+}
+
+.contact-us p {
+  margin: 5px;
+}
+
+
+
+/* Popup stils */
+.popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #f5f5f5;
+	border: 2.5px solid #8BC34A;
+	padding: 20px;
+	display: none;
+  border-radius: 5px;
+}
+.popup:target {
+	display: block;
+}
+.close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #000;
+	text-decoration: none;
+	font-size: 1.2em;
+}
+.close:hover {
+	color: #8BC34A;
+}
+
+/* Form stils */
+form {
+	margin-top: 20px;
+}
+label {
+	display: inline-block;
+	width: 120px;
+}
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #000;
+}
+input[type="submit"] {
+	background-color: #4f4f4f;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+input[type="submit"]:hover {
+	background-color: #8BC34A;
+}
+
+/* Link styles */
+a {
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	color: #8BC34A;
+}
