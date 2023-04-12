@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
+  $_SESSION['user'] = 'john';
+  
+}
+?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -12,6 +21,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
   </style>
 <body>
+<php
+  session_start();
+?>
   <header>
     <section class="sect1">
       <a href="index.php" class="pageS1"> <div class="pageS"><p>Sakums</p></div> </a>
@@ -32,23 +44,14 @@
           <label for="password">Parole:</label>
           <input type="password" id="password" name="password"><br><br>
           <input type="submit" value="Submit">
-          <button id="loginButton">Login</button>
+          
 
 
-          <php
-          session_start();
-          ?>
-<script>
-  // testēšanas poga
-  var loginButton = document.getElementById('loginButton');
-  loginButton.addEventListener('click', function() {
-    $_SESSION['username'] = 'JohnDoe';
-    $_SESSION['isLoggedIn'] = true;
-    
-  });
-</script>
-
+      
         </form>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="submit" name="setUsername" value="Set Username to 'john'">
+  </form>
       </div>
     </section>
   </header>
@@ -57,14 +60,6 @@
 
     <div class="pnews">
       <h1>Jaunumi</h1>
-      
-
-
-
-
-
-
-
         <?php
         $servername = "localhost:3307"; // replace with your server name
         $username = "root"; // replace with your MySQL username
@@ -90,13 +85,10 @@
       
         // loop through the results and generate the HTML for each article
         while($row = mysqli_fetch_assoc($result)) {
-          if (!isset($_SESSION['username'])) {
-            if (isset($_POST['set_value'])) {
-              $_SESSION['my_value'] = 'hello';
-            }
-            echo '
-            <a href="pievienot.php"><button name="set_value">Set value</button></a>';
-          }
+          if (isset($_SESSION['user'])) { // Updated condition to check for $_SESSION['my_value'] instead of $_SESSION['username']
+            echo '<a href="pievienot.php"><button name="Edit">Edit</button></a>';
+        }
+        
           echo '<div class="item">';
           echo '<img src="https://via.placeholder.com/600x400" alt="Image 3">';
           echo  '<div class="text">';
