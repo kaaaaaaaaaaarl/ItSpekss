@@ -73,10 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
           $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
           $limit = 10;
 
-         $sql = "SELECT * FROM ziņas ORDER BY id DESC LIMIT $offset, $limit";
+         $sql = "SELECT * FROM vakances ORDER BY id DESC LIMIT $offset, $limit";
           $result = mysqli_query($conn, $sql);
 
           ob_start();
+          if (isset($_SESSION['user'])) {
+            echo  '<a href="pievienot.php?VVZ=V&Edit=C"> <button name="Edit">Add</button></a>';
+            }
       
          while($row = mysqli_fetch_assoc($result)) {
           if (isset($_SESSION['user'])) {
