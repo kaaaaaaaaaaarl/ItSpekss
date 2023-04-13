@@ -134,9 +134,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['EditOrPost'])) {
 
   if($edit=='E'){
-<<<<<<< HEAD
-    
-=======
     if($VorZ=='Z'){
       $newtitle=$_POST['title'];
       $newsources=$_POST['sources'];
@@ -150,39 +147,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['EditOrPost'])) {
       echo "Error updating record: " . $conn->error;
     }
 $conn->close();
-    }  
-}else if($VorZ=='V'){
+    }else if($VorZ=='V'){
   $newtitle=$_POST['title'];
   $newsources=$_POST['sources'];
   $newmaintext= $_POST['main-text'];
-  
-  if(Piejams == 'checked')
+  $sql = "UPDATE vakances SET Tituls='$newtitle', Avoti='$newsources', GalvenaisTeksts='$newmaintext', Piejamība=true WHERE id in ($id)";
+ /* if(Piejams == 'checked')
 {
   $sql = "UPDATE vakances SET Tituls='$newtitle', Avoti='$newsources', GalvenaisTeksts='$newmaintext' piejamiba=true WHERE id in ($id)";
 }else{
 $sql = "UPDATE vakances SET Tituls='$newtitle', Avoti='$newsources', GalvenaisTeksts='$newmaintext' piejamiba=false WHERE id in ($id)";
-}
+}*/
 if ($conn->query($sql) === TRUE) {
   header("Refresh:0");
 } else {
   echo "Error updating record: " . $conn->error;
 }
 $conn->close();
-}  
+}}  
 else if($edit=='C'){
   if($VorZ=='Z'){
     $newtitle=$_POST['title'];
     $newsources=$_POST['sources'];
     $newmaintext= $_POST['main-text'];
 
-  $sql = "INSERT INTO ziņas (id, Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID)
-  VALUES ((SELECT COUNT(*)), '$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1);";
+  $sql = "INSERT INTO ziņas (Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID)
+  VALUES ('$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1);";
   if ($conn->query($sql) === TRUE) {
 
     header("Refresh:0");
   } else {
     echo "Error updating record: " . $conn->error;
->>>>>>> 8692edef70bb06bf35ba9014561f8f8e95fb47fc
   }
 $conn->close();
     
@@ -192,8 +187,8 @@ $conn->close();
     $newsources=$_POST['sources'];
     $newmaintext= $_POST['main-text'];
 
-  $sql = "INSERT INTO Vakances (id, Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID, piejamība)
-  VALUES ((SELECT COUNT(*)), '$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1, true);";
+  $sql = "INSERT INTO vakances (Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID, Piejamība)
+  VALUES ( '$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1, true);";
   if ($conn->query($sql) === TRUE) {
 
     header("Refresh:0");
