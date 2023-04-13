@@ -81,12 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['setUsername'])) {
       
         // start output buffering
         ob_start();
-      
+        if (isset($_SESSION['user'])) {
+          echo  '<a href="pievienot.php?VVZ=Z&Edit=C"> <button name="Edit">Add</button></a>';
+          }
         // loop through the results and generate the HTML for each article
         while($row = mysqli_fetch_assoc($result)) {
-          if (isset($_SESSION['user'])) { // Updated condition to check for $_SESSION['my_value'] instead of $_SESSION['username']
-            echo '<a href="pievienot.php"><button name="Edit">Edit</button></a>';
-        }
+          if (isset($_SESSION['user'])) {
+            $id = $row['ID'];
+            echo  '<a href="pievienot.php?id='. $id .'&VVZ=Z&Edit=E"> <button name="Edit">Edit</button></a>';
+            }
         
           echo '<div class="item">';
           echo '<img src="https://via.placeholder.com/600x400" alt="Image 3">';
