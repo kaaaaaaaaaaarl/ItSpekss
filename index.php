@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -23,12 +26,33 @@
         <div class="popup" id="popup">
           <a href="#" class="close">Aizvert</a>
           <h2>Ielogoties</h2>
-          <form class="form2">
+          <form class="form2" method="post">
             <label for="username">Lietotajvārds:</label>
             <input type="text" id="username" name="username"><br><br>
             <label for="password">Parole:</label>
             <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" name="Submit">
+            <input type="submit" value="Logout" name="Logout">
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Submit'])){
+            require("connect_db.php");
+            $lietotajvards = $_POST['username'];
+            $parole = $_POST['password'];
+            $sql = "SELECT * FROM admin WHERE Lietotājvārds = '$lietotajvards' AND Parole = '$parole' ";
+            $result = $savienojums-> query($sql);
+            if($result->num_rows > 0){
+              $_SESSION['user'] = $lietotajvards;
+            }else{
+              echo "Nepareiz lietotajvards vai parole!";
+            }}
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Logout'])){
+              if(isset($_SESSION['user'] )){
+                unset($_SESSION['user']);
+              }else{
+                echo "your not logged in";
+              }
+            }
+            ?>
           </form>
         </div>
       </section>
