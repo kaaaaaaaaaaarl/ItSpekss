@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="lv">
@@ -155,7 +153,7 @@ session_start();
 </form>
 
 <?php
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['EditOrPost'])) {
 
@@ -197,8 +195,8 @@ else if($edit=='C'){
     $newsources=$_POST['sources'];
     $newmaintext= $_POST['main-text'];
 
-  $sql = "INSERT INTO ziņas (Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID)
-  VALUES ('$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1);";
+  $sql = "INSERT INTO ziņas ( Tituls, Avoti, GalvenaisTeksts, VeidotājaLietotājvārds, AdminID, FotoID)
+  VALUES ( '$newtitle', '$newsources', '$newmaintext', 'fake', 1, 1);";
   if ($conn->query($sql) === TRUE) {
 
     header("Refresh:0");
@@ -232,6 +230,8 @@ $conn->close();
 
 ?>
 <?php 
+if(isset($_GET['id'])){
+  $id= $_GET['id'];}
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Delete'])){
 
   if($VorZ=='Z'){

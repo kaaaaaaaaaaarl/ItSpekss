@@ -53,7 +53,7 @@ session_start();
               if(isset($_SESSION['user'] )){
                 unset($_SESSION['user']);
               }else{
-                echo "your not logged in";
+                echo "tu neesi ielogojies";
               }
             }
             ?>

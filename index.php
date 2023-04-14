@@ -49,7 +49,7 @@ session_start();
               if(isset($_SESSION['user'] )){
                 unset($_SESSION['user']);
               }else{
-                echo "your not logged in";
+                echo "tu neesi ielogojies";
               }
             }
             ?>
@@ -94,28 +94,42 @@ session_start();
     </div>
   
     <div class="container1">
-      <div class="news">     
-        <h2 style="bottom: 10rem">IT Waffle Meetup #24.</h2>
-        <p>Šobrīd nav pateikts uz kuru datumu notiks Nākošais Waffle meetup. Lai gan vienmēr ir laba ideja aiziet us šiem pasākumiem kas ir organizēti caur "Liepājas Biznesa Inkubātora LIAA" Lai atrastu vakances, draugus vai pat pilnus darbus. Lai izlasītu vairāk varat apmeklēt <a href="https://www.facebook.com/ITWaffleMeetup/">facebook.com/ITWaffleMeetup</a>></p>
-      </div>
+    <?php
+        $servername = "localhost:3307"; 
+        $username = "root";
+        $password = ""; 
+        $dbname = "pps"; 
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">IT Waffle Meetup #24.</h2>
-        <p>Šobrīd nav pateikts uz kuru datumu notiks Nākošais Waffle meetup. Lai gan vienmēr ir laba ideja aiziet us šiem pasākumiem kas ir organizēti caur "Liepājas Biznesa Inkubātora LIAA" Lai atrastu vakances, draugus vai pat pilnus darbus. Lai izlasītu vairāk varat apmeklēt <a href="https://www.facebook.com/ITWaffleMeetup/">facebook.com/ITWaffleMeetup</a></p>
-      </div>
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">IT Waffle Meetup #24.</h2>
-        <p>Šobrīd nav pateikts uz kuru datumu notiks Nākošais Waffle meetup. Lai gan vienmēr ir laba ideja aiziet us šiem pasākumiem kas ir organizēti caur "Liepājas Biznesa Inkubātora LIAA" Lai atrastu vakances, draugus vai pat pilnus darbus. Lai izlasītu vairāk varat apmeklēt <a href="https://www.facebook.com/ITWaffleMeetup/">facebook.com/ITWaffleMeetup</a></p>
-      </div>
+        $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+        $limit = 4;
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">IT Waffle Meetup #24.</h2>
-        <p>Šobrīd nav pateikts uz kuru datumu notiks Nākošais Waffle meetup. Lai gan vienmēr ir laba ideja aiziet us šiem pasākumiem kas ir organizēti caur "Liepājas Biznesa Inkubātora LIAA" Lai atrastu vakances, draugus vai pat pilnus darbus. Lai izlasītu vairāk varat apmeklēt <a href="https://www.facebook.com/ITWaffleMeetup/">facebook.com/ITWaffleMeetup</a></p>
-      </div>
-      <div class="lasiVairak">
-      <h2><a style="font-size: 20px;" href="News.html" class="lasitVairak">Apskatīt vairāk</a></h2>
-      </div>
+        $sql = "SELECT * FROM ziņas ORDER BY id DESC LIMIT $offset, $limit";
+        $result = mysqli_query($conn, $sql);
+      
+        // start output buffering
+        ob_start();
+        
+        // loop through the results and generate the HTML for each article
+        while($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="news"> ';
+          echo "<h2 style='bottom: 10rem'>" . $row["Tituls"] . "</h2>";
+          echo "<p>" . $row["GalvenaisTeksts"] . "</p>";
+          echo '</div>';
+          if(ob_get_length() > 1024 * 1024) {
+            ob_flush();
+            ob_start();
+          }
+        }
+
+        ob_end_flush();
+
+        mysqli_close($conn);
+        ?>  
     </div>
     <hr>
 
@@ -125,29 +139,45 @@ session_start();
     </div>
   
     <div class="container1">
-      <div class="news">     
-        <h2 style="bottom: 10rem">Maxima</h2>
-        <p>Liepaja ir vairakas jaunas paš-kalpošanas kases kurām regulāri jālabo tehniskas problēmas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde voluptate rem, deleniti ducimus quasi inventore eveniet enim voluptates hic autem consectetur neque nihil aut molestiae! Quos natus, alias enim nobis laboriosam nostrum officia! Deserunt at earum voluptas, ullam enim repudiandae?</p>
-      </div>
+      
+    <?php
+        
+        $servername = "localhost:3307"; 
+        $username = "root"; 
+        $password = ""; 
+        $dbname = "pps"; 
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+       if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">Maxima</h2>
-        <p>Liepaja ir vairakas jaunas paš-kalpošanas kases kurām regulāri jālabo tehniskas problēmas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde voluptate rem, deleniti ducimus quasi inventore eveniet enim voluptates hic autem consectetur neque nihil aut molestiae! Quos natus, alias enim nobis laboriosam nostrum officia! Deserunt at earum voluptas, ullam enim repudiandae?</p>
-      </div>
+        $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
+        $limit = 4;
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">Maxima</h2>
-        <p>Liepaja ir vairakas jaunas paš-kalpošanas kases kurām regulāri jālabo tehniskas problēmas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde voluptate rem, deleniti ducimus quasi inventore eveniet enim voluptates hic autem consectetur neque nihil aut molestiae! Quos natus, alias enim nobis laboriosam nostrum officia! Deserunt at earum voluptas, ullam enim repudiandae?</p>
-      </div>
+       $sql = "SELECT * FROM vakances ORDER BY id DESC LIMIT $offset, $limit";
+        $result = mysqli_query($conn, $sql);
 
-      <div class="news">     
-        <h2 style="bottom: 10rem">Maxima</h2>
-        <p>Liepaja ir vairakas jaunas paš-kalpošanas kases kurām regulāri jālabo tehniskas problēmas. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde voluptate rem, deleniti ducimus quasi inventore eveniet enim voluptates hic autem consectetur neque nihil aut molestiae! Quos natus, alias enim nobis laboriosam nostrum officia! Deserunt at earum voluptas, ullam enim repudiandae?</p>
-      </div>
-      <div class="lasiVairak">
-      <h2><a style="font-size: 20px;" href="C:\html learning\school\pps\vakances.html" class="lasitVairak">Apskatīt vairāk</a></h2>
-      </div>
-    </div>
+        ob_start();
+        
+    
+       while($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="news"> ';
+          echo "<h2 style='bottom: 10rem'>" . $row["Tituls"] . "</h2>";
+          echo "<p>" . $row["GalvenaisTeksts"] . "</p>";
+          echo '</div>';
+        
+         if(ob_get_length() > 1024 * 1024) {
+           ob_flush();
+            ob_start();
+         }
+        }
+    
+        // send the remaining output to the browser
+       ob_end_flush();
+    
+        mysqli_close($conn);
+        ?>
+      
 
     
   </div>

@@ -56,7 +56,7 @@ session_start();
               if(isset($_SESSION['user'] )){
                 unset($_SESSION['user']);
               }else{
-                echo "your not logged in";
+                echo "tu neesi ielogojies";
               }
             }
             ?>
@@ -75,8 +75,6 @@ session_start();
         $password = ""; 
         $dbname = "pps"; 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-        
-        // Check connection
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
@@ -84,8 +82,7 @@ session_start();
 
         $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
         $limit = 10;
-      
-        // query your database for the news articles
+
         $sql = "SELECT * FROM ziņas ORDER BY id DESC LIMIT $offset, $limit";
         $result = mysqli_query($conn, $sql);
       
@@ -107,18 +104,14 @@ session_start();
           echo "<h2>" . $row["Tituls"] . "</h2>";
           echo "<p>" . $row["GalvenaisTeksts"] . "</p>";
           echo '</div> </div>';
-          // flush the output buffer if it exceeds 1MB
           if(ob_get_length() > 1024 * 1024) {
             ob_flush();
             ob_start();
           }
         }
-      
-        // send the remaining output to the browser
+
         ob_end_flush();
-      
-        
-        // Close the connection
+
         mysqli_close($conn);
         ?>
         </div>
